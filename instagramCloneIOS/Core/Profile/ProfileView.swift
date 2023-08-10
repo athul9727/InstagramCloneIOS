@@ -27,7 +27,7 @@ struct ProfileView: View {
                     //pic and stats
                     HStack{
                         Image("img1")
-                            .resizable().resizable().scaledToFit().frame(width: 80,height: 80).clipShape(Circle())
+                            .resizable().resizable().scaledToFill().frame(width: 80,height: 80).clipShape(Circle())
                         
                         Spacer()
                         
@@ -82,6 +82,17 @@ struct ProfileView: View {
                 }
             }
             .navigationTitle("Profile").navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement:.navigationBarTrailing){
+                    Button(){
+                        
+                    }label: {
+                        Image(systemName: "line.3.horizontal").foregroundColor(.black )
+                    }
+                    
+                }
+                
+            }
         }
        
     }
