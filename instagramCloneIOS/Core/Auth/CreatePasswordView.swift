@@ -1,37 +1,36 @@
 //
-//  AddEmailView.swift
+//  CreatePasswordView.swift
 //  instagramCloneIOS
 //
-//  Created by Athul Thomas on 10/08/23.
+//  Created by Athul Thomas on 11/08/23.
 //
 
 import SwiftUI
 
-struct AddEmailView: View {
-    @State private var email = ""
+struct CreatePasswordView: View {
+    @State private var password = ""
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        
         VStack(spacing:12){
             
-            Text("Add your email")
+            Text("Create password")
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.top)
             
-            Text("You'll use this email to sign in the account")
+            Text("Your password must be at least 6 characters in length")
                 .font(.footnote)
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal,24)
             
-            TextField("Email",text: $email)
-                .autocapitalization(.none)
+            SecureField("Password",text: $password)
                 .modifier(IGTextFieldModifier())
                 .padding(.top)
             
+            
             NavigationLink{
-                CreateUserNameView().navigationBarBackButtonHidden(true)
+                CompleteSignUpView().navigationBarBackButtonHidden(true)
             }label: {
                 Text("Next")
                     .font(.subheadline)
@@ -43,8 +42,6 @@ struct AddEmailView: View {
                     .cornerRadius(10)
             }
             .padding(.vertical)
-            
-        
             
             Spacer()
             
@@ -60,10 +57,10 @@ struct AddEmailView: View {
             }
         }
     }
-    
-    struct AddEmailView_Previews: PreviewProvider {
-        static var previews: some View {
-            AddEmailView()
-        }
+}
+
+struct CreatePasswordView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreatePasswordView()
     }
 }
