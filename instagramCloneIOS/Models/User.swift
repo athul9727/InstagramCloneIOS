@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Identifiable, Codable{
+struct User: Identifiable,Hashable, Codable{
     
     let id: String
     var username:String
@@ -28,7 +28,7 @@ extension User{
         .init(id: NSUUID().uuidString, username: "batman", profileImageUrl: "batman", fullname: "Bruce wayne",bio: "i m batman", email: "batman123@gmail.com"),
         .init(id: NSUUID().uuidString, username: "ironman", profileImageUrl: "img4", fullname: "Tony stark",bio: "i m ironman", email: "ironman123@gmail.com"),
         .init(id: NSUUID().uuidString, username: "ironman", profileImageUrl: "img4", fullname: "Tony stark",bio: "i m ironman", email: "ironman123@gmail.com"),
-        .init(id: NSUUID().uuidString, username: "ironman", profileImageUrl: "img4", fullname: "Tony stark",bio: "i m ironman", email: "ironman123@gmail.com"),
+        .init(id: NSUUID().uuidString, username: "ironman", profileImageUrl: "img4", fullname: nil,bio: "i m ironman", email: "ironman123@gmail.com"),
         .init(id: NSUUID().uuidString, username: "ironman", profileImageUrl: "img4", fullname: "Tony stark",bio: "i m ironman", email: "ironman123@gmail.com"),
       
     ]

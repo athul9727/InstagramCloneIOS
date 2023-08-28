@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewmodel = ContentViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        Group {
+            
+            if(viewmodel.userSession == nil){
+                LoginView()
+            }
+            else{
+                TabMainView()
+            }
+            
         }
-        .padding()
     }
 }
 
