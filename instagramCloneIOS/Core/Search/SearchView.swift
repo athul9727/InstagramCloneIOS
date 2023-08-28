@@ -12,33 +12,40 @@ struct SearchView: View {
     @State private var searchText = ""
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ScrollView {
                 LazyVStack(spacing:12){
                     
                     ForEach(User.MOCK_USERS){ user in
-                        HStack{
-                            Image(user.profileImageUrl ?? "")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 40,height: 40)
-                                .clipShape(Circle())
-                            
-                            VStack(alignment:.leading){
-                                Text(user.username)
-                                    .fontWeight(.semibold)
+                        NavigationLink(value:user){
+                            HStack{
+                                Image(user.profileImageUrl ?? "")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 40,height: 40)
+                                    .clipShape(Circle())
                                 
-                                Text(user.fullname ?? "")
-                                    .fontWeight(.semibold)
+                                VStack(alignment:.leading){
+                                    Text(user.username)
+                                        .fontWeight(.semibold)
+                                    
+                                    if let fullname = user.fullname {
+                                        Text(fullname)
+                                            .fontWeight(.semibold)
+                                    }
+                                    
+                                 
+                                    
+                                }
+                                .font(.footnote)
+                                
+                                
+                                Spacer()
                                 
                             }
-                            .font(.footnote)
-                            
-                            
-                            Spacer()
-                            
+                            .foregroundColor(.black)
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
                     }
                     
                 }
@@ -46,6 +53,9 @@ struct SearchView: View {
                 .searchable(text: $searchText,prompt:"search..")
 
             }
+            .navigationDestination(for: User.self, destination: {
+                user in ProfileView(user:user)
+            })
             .navigationTitle("Explore")
             .navigationBarTitleDisplayMode(.inline)
         }

@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct FeedCellView: View {
+    let post:Post
     var body: some View {
         VStack{
             //image + username
             HStack{
-                Image("img1")
-                    .resizable().scaledToFill().frame(width: 40,height: 40).clipShape(Circle())
-                Text("Chadwick Boseman")
-                    .font(.footnote)
-                    .fontWeight(.semibold)
+                if let user = post.user{
+                    Image(user.profileImageUrl ?? "")
+                        .resizable().scaledToFill().frame(width: 40,height: 40).clipShape(Circle())
+                    Text(user.username)
+                        .font(.footnote)
+                        .fontWeight(.semibold)
+                }
                 Spacer()
                 
             }.padding(.leading,8)
             //post image
-            Image("img1")
+            Image(post.imageUrl)
                 .resizable().scaledToFill().frame(height: 400).clipShape(Rectangle())
             //action buttons
             HStack(spacing:16){
@@ -48,7 +51,7 @@ struct FeedCellView: View {
                 .padding(.top,4)
                 .foregroundColor(.black)
             //like label
-            Text("23 likes")
+            Text("\(post.likes) likes")
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity,alignment: .leading)
@@ -56,8 +59,8 @@ struct FeedCellView: View {
                 .padding(.top,1)
             //caption label
             HStack{
-                Text("Batman ").fontWeight(.semibold)
-                Text("i m batman")
+                Text("\(post.user?.username ?? "")").fontWeight(.semibold)
+                Text("\(post.caption)")
             }
             .font(.footnote)
             .frame(maxWidth: .infinity,alignment: .leading)
@@ -77,6 +80,6 @@ struct FeedCellView: View {
 
 struct FeedCellView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedCellView()
+        FeedCellView(post: Post.MOCK_POSTS[0])
     }
 }
