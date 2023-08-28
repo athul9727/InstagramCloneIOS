@@ -10,7 +10,7 @@ import SwiftUI
 struct TabMainView: View {
     var body: some View {
         TabView{
-           FeedView()
+            FeedView(post: Post.MOCK_POSTS[0])
                 .tabItem {
                     Image(systemName: "house")
                 }
@@ -26,7 +26,7 @@ struct TabMainView: View {
                 .tabItem {
                     Image(systemName: "heart")
                 }
-            ProfileView()
+            CurrentUserProfileView(user: User.MOCK_USERS[0])
                 .tabItem {
                     Image(systemName: "person")
                 }
